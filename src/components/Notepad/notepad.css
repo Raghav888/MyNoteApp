@@ -1,0 +1,26 @@
+.notelist {
+    background-color: white;
+    margin-top: 1rem;
+    padding: var(--padding-note);
+    border-radius: 5px;
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: var(--note-pad-width);
+}
+
+.note-footer {
+    display: flex;
+    margin-top: 1rem;
+    color: gray;
+    font-size: 1rem;
+}
+
+.note-option {
+    margin-left: auto;
+}
+
+.note-option-icon {
+    margin-left: 1rem;
+}

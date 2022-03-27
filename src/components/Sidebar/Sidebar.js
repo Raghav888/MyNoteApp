@@ -41,6 +41,9 @@ export const Sidebar = () => {
             </div>
           );
         })}
+        <button className="mantra-button mantra-primary-btn note-button">
+          Create New Note
+        </button>
       </form>
     </div>
   );
