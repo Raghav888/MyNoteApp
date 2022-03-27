@@ -3,8 +3,10 @@ import { noteListReducer } from "../utils/noteListReducer";
 const { createContext, useContext, useEffect, useReducer } = require("react");
 
 const NoteContext = createContext();
-const api = "https://my-json-server.typicode.com/Raghav888/mynoteappAPI/notes";
+
 const NoteContextProvider = ({ children }) => {
+  const api =
+    "https://my-json-server.typicode.com/Raghav888/mynoteappAPI/notes";
   const [noteListState, noteListDisptach] = useReducer(noteListReducer, {
     noteList: [],
   });
