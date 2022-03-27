@@ -1,3 +1,14 @@
+:root {
+    --note-margin-left: 35rem;
+    --note-margin-top: 9rem;
+    --search-box-font-size: 1.5rem;
+    --search-box-size: 4rem;
+    --search-box-margin-left: 1rem;
+    --padding-note: 1rem;
+    --search-box-width: 35rem;
+    --note-pad-width: 41rem;
+}
+
 .App {
     text-align: center;
 }
@@ -5,4 +16,12 @@
 * {
     padding: 0;
     margin: 0;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.text-bold {
+    font-weight: bold;
 }

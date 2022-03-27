@@ -6,6 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { extendTheme } from "@chakra-ui/react";
+import { NoteContextProvider } from "./context/note-context";
 
 const theme = extendTheme({
   styles: {
@@ -21,7 +22,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <BrowserRouter>
-        <App />
+        <NoteContextProvider>
+          <App />
+        </NoteContextProvider>
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>,
