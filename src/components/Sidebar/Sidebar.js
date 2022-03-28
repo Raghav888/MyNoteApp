@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import { v4 } from "uuid";
 import "./sidebar.css";
 
@@ -9,31 +9,28 @@ const sideboxData = [
     pageName: "Home",
     path: "/",
     class: "fa fa-home",
-    active: "sidebar-sub-active",
   },
-  { id: v4(), pageName: "Labels", path: "/labels", class: "fa fa-tag" },
+  { id: v4(), pageName: "Labels", path: "/label", class: "fa fa-tag" },
   { id: v4(), pageName: "Archive", path: "/archive", class: "fa fa-archive" },
   { id: v4(), pageName: "Trash", path: "/trash", class: "fa fa-trash" },
 ];
 
-export const Sidebar = () => {
-  const [sidebox, setsidebox] = useState(sideboxData);
-  const makeActive = (id) => {
-    const newsidebox = sidebox.map((item) =>
-      item.id === id
-        ? { ...item, active: "sidebar-sub-active" }
-        : { ...item, active: "" }
-    );
-    setsidebox(newsidebox);
-  };
+export const Sidebar = (props) => {
   return (
     <div className="sidebar-main">
       <form>
-        {sidebox.map((item) => {
+        {sideboxData.map((item) => {
           return (
-            <div key={item.id}>
-              <Link to={item.path} onClick={() => makeActive(item.id)}>
-                <div className={`sidebar-sub ${item.active}`}>
+            <div
+              key={item.id}
+              // className={item.active}
+              // onClick={() => makeActive(item.id)}
+              className={
+                props.name === item.pageName ? "sidebar-sub-active" : null
+              }
+            >
+              <Link to={item.path}>
+                <div className="sidebar-sub">
                   <i className={item.class} aria-hidden="true"></i>
                   <span className="sidebar-name">{item.pageName}</span>
                 </div>

@@ -7,19 +7,51 @@ export const Notepad = (props) => {
       <div className="note-data">
         <p className="text-align-left">{props.item.data}</p>
         <div className="note-footer">
+          <div className="note-label">{props.item.tag.toLowerCase()}</div>
           <div>Created on {props.item.date}</div>
-          <div className="note-option">
-            <i
-              className="fa fa-palette note-option-icon"
-              aria-hidden="true"
-            ></i>
-            <i
-              className="fa fa-archive note-option-icon"
-              aria-hidden="true"
-            ></i>
-            <i className="fa fa-trash note-option-icon" aria-hidden="true"></i>
-            <i className="fa fa-pencil note-option-icon" aria-hidden="true"></i>
-          </div>
+          {props.item.istrashed ? (
+            <div className="note-option">
+              <i
+                className="fa fa-palette note-option-icon"
+                aria-hidden="true"
+              ></i>
+            </div>
+          ) : props.item.isArchived ? (
+            <div className="note-option">
+              <i
+                className="fa fa-palette note-option-icon"
+                aria-hidden="true"
+              ></i>
+
+              <i
+                className="fa fa-trash note-option-icon"
+                aria-hidden="true"
+              ></i>
+              <i
+                className="fa fa-pencil note-option-icon"
+                aria-hidden="true"
+              ></i>
+            </div>
+          ) : (
+            <div className="note-option">
+              <i
+                className="fa fa-palette note-option-icon"
+                aria-hidden="true"
+              ></i>
+              <i
+                className="fa fa-archive note-option-icon"
+                aria-hidden="true"
+              ></i>
+              <i
+                className="fa fa-trash note-option-icon"
+                aria-hidden="true"
+              ></i>
+              <i
+                className="fa fa-pencil note-option-icon"
+                aria-hidden="true"
+              ></i>
+            </div>
+          )}
         </div>
       </div>
     </div>

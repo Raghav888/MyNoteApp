@@ -17,8 +17,17 @@
     width: max-content;
 }
 
+.filter-icon,
 .search-icon {
     margin-top: 5px;
+}
+
+.filter-icon {
+    visibility: hidden;
+}
+
+.icon-Home {
+    visibility: visible;
 }
 
 .search-box {

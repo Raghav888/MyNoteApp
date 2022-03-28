@@ -8,7 +8,7 @@ export const Note = () => {
 
   return (
     <div>
-      <Searchbar />
+      <Searchbar home={"Home"} />
       <div className="note-page">
         {noteListState.noteList.map((item) => {
           return <Notepad item={item} key={item.id} />;

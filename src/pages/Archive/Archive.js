@@ -1,14 +1,15 @@
+import { ArchiveData } from "../../components/ArchiveData/ArchiveData";
 import { Navbar } from "../../components/NavBar/Navbar";
-import { Note } from "../../components/Note/Note";
+
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 
-export const Home = () => {
+export const Archive = () => {
   return (
     <div>
       <Navbar />
       <div className="main-box">
-        <Sidebar name="Home" />
-        <Note />
+        <Sidebar name="Archive" />
+        <ArchiveData />
       </div>
     </div>
   );
