@@ -37,6 +37,26 @@
     margin-left: var( --note-margin-left);
 }
 
+.white-box {
+    background-color: white;
+}
+
+.red-box {
+    background: #F08080;
+}
+
+.blue-box {
+    background-color: #87CEEB;
+}
+
+.green-box {
+    background-color: #98FB98;
+}
+
+.cream-box {
+    background-color: #FFFDD0;
+}
+
 @media only screen and (max-width: 930px) {
     .note-page {
         font-size: 55%;
