@@ -1,4 +1,10 @@
 import axios from "axios";
+import {
+  compose,
+  dataFilterbytag,
+  sortDate,
+  sortPriority,
+} from "../utils/filterSort";
 import { noteListReducer } from "../utils/noteListReducer";
 const { createContext, useContext, useEffect, useReducer } = require("react");
 
@@ -9,6 +15,9 @@ const NoteContextProvider = ({ children }) => {
     "https://my-json-server.typicode.com/Raghav888/mynoteappAPI/notes";
   const [noteListState, noteListDisptach] = useReducer(noteListReducer, {
     noteList: [],
+    sortbydate: false,
+    sortbypriority: false,
+    tags: [],
   });
 
   useEffect(() => {
@@ -25,8 +34,17 @@ const NoteContextProvider = ({ children }) => {
     })();
   }, []);
 
+  const filterData = compose(
+    noteListState,
+    sortDate,
+    sortPriority,
+    dataFilterbytag
+  );
+
   return (
-    <NoteContext.Provider value={{ noteListState, noteListDisptach }}>
+    <NoteContext.Provider
+      value={{ filterData, noteListDisptach, noteListState }}
+    >
       {children}
     </NoteContext.Provider>
   );

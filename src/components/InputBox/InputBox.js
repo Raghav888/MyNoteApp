@@ -13,7 +13,7 @@ export const InputBox = (props) => {
     const dd = String(today.getDate()).padStart(2, "0");
     const mm = String(today.getMonth() + 1).padStart(2, "0");
     const yyyy = today.getFullYear();
-    today = dd + "/" + mm + "/" + yyyy;
+    today = yyyy + "/" + mm + "/" + dd;
 
     const newData = { ...inputdatastate, id: v4(), date: today };
     noteListDisptach({
@@ -33,7 +33,7 @@ export const InputBox = (props) => {
             className="close-button"
             onClick={() => props.closeinputbox(false)}
           >
-            <i class="fa fa-times" aria-hidden="true"></i>
+            <i className="fa fa-times" aria-hidden="true"></i>
           </button>
         </div>
         <div className="title">

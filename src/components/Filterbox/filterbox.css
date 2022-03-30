@@ -106,3 +106,8 @@
 #cancelBtn {
     background-color: crimson;
 }
+
+.filter-clear {
+    text-align: right;
+    cursor: pointer;
+}

@@ -1,6 +1,8 @@
 import "./notepad.css";
 import React from "react";
+import { useNote } from "../../context/note-context";
 export const Notepad = (props) => {
+  const { noteListDisptach } = useNote();
   return (
     <div className={`notelist ${props.item.cardcolor}`}>
       <h1 className="text-align-left text-bold">{props.item.title}</h1>
@@ -34,6 +36,12 @@ export const Notepad = (props) => {
               <i
                 className="fa fa-trash note-option-icon"
                 aria-hidden="true"
+                onClick={() =>
+                  noteListDisptach({
+                    type: "DELETE_NOTE",
+                    payload: { value: props.item.id },
+                  })
+                }
               ></i>
               <i
                 className="fa fa-pencil note-option-icon"
