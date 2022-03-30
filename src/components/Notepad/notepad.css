@@ -26,6 +26,10 @@
     margin-left: 1rem;
 }
 
+.note-option-icon:hover {
+    color: black;
+}
+
 .note-label {
     background-color: var(--primary-color);
     color: white;
