@@ -6,7 +6,7 @@ export const noteListReducer = (state, action) => {
       return { ...state, noteList: action.payload.value };
     case "ADD_NOTE":
       (async () => {
-        const statusofpost = await axios.post(
+        await axios.post(
           "https://my-json-server.typicode.com/Raghav888/mynoteappAPI/notes",
           { notes: action.payload.value },
           {
@@ -44,7 +44,7 @@ export const noteListReducer = (state, action) => {
       }
     case "DELETE_NOTE":
       (async () => {
-        const statusofpost = await axios.delete(
+        await axios.delete(
           `https://my-json-server.typicode.com/Raghav888/mynoteappAPI/notes/${action.payload.value}`
         );
       })();
