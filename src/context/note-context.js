@@ -18,6 +18,10 @@ const NoteContextProvider = ({ children }) => {
     sortbydate: false,
     sortbypriority: false,
     tags: [],
+    trashData: [],
+    archiveData: [],
+    trashDatatemp: [],
+    archiveDatatemp: [],
   });
 
   useEffect(() => {
