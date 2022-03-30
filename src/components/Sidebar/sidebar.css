@@ -29,11 +29,11 @@
 }
 
 .sidebar-sub:hover {
-    background-color: rgb(240, 233, 233);
+    background-color: gray
 }
 
 .sidebar-sub-active {
-    background-color: gray;
+    background-color: #fdfafa;
     border-radius: 5px;
 }
 

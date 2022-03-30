@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { v4 } from "uuid";
 import "./sidebar.css";
+import { AddnewNote } from "../Addnewnote/AddnewNote";
 
 const sideboxData = [
   {
@@ -23,8 +24,6 @@ export const Sidebar = (props) => {
           return (
             <div
               key={item.id}
-              // className={item.active}
-              // onClick={() => makeActive(item.id)}
               className={
                 props.name === item.pageName ? "sidebar-sub-active" : null
               }
@@ -38,10 +37,8 @@ export const Sidebar = (props) => {
             </div>
           );
         })}
-        <button className="mantra-button mantra-primary-btn note-button">
-          Create New Note
-        </button>
       </form>
+      <AddnewNote />
     </div>
   );
 };

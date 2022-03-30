@@ -28,6 +28,7 @@
 
 .icon-Home {
     visibility: visible;
+    cursor: pointer;
 }
 
 .search-box {

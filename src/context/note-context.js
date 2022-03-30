@@ -24,10 +24,9 @@ const NoteContextProvider = ({ children }) => {
       }
     })();
   }, []);
-  console.log(noteListState);
 
   return (
-    <NoteContext.Provider value={{ noteListState }}>
+    <NoteContext.Provider value={{ noteListState, noteListDisptach }}>
       {children}
     </NoteContext.Provider>
   );

@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { extendTheme } from "@chakra-ui/react";
 import { NoteContextProvider } from "./context/note-context";
+import { InputDataProvider } from "./context/inputdata-context";
 
 const theme = extendTheme({
   styles: {
@@ -23,7 +24,9 @@ ReactDOM.render(
     <ChakraProvider theme={theme}>
       <BrowserRouter>
         <NoteContextProvider>
-          <App />
+          <InputDataProvider>
+            <App />
+          </InputDataProvider>
         </NoteContextProvider>
       </BrowserRouter>
     </ChakraProvider>
