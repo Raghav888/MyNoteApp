@@ -13,7 +13,7 @@ export const Filterbox = (props) => {
             <i className="fa fa-times" aria-hidden="true"></i>
           </button>
         </div>
-        <div className="filter-title text-bold">Sorting and Filter</div>
+        <div className="filter-title text-bold">Filter</div>
 
         <div className="sort">
           <div>

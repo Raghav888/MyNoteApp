@@ -2,7 +2,8 @@
     font-size: 62.5%;
     width: 100vw;
     height: 100vh;
-    background-color: #D3D3D3;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
     position: fixed;
     top: 0;
     display: flex;
