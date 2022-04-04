@@ -12,8 +12,18 @@ const sideboxData = [
     class: "fa fa-home",
   },
   { id: v4(), pageName: "Labels", path: "/label", class: "fa fa-tag" },
-  { id: v4(), pageName: "Archive", path: "/archive", class: "fa fa-archive" },
-  { id: v4(), pageName: "Trash", path: "/trash", class: "fa fa-trash" },
+  {
+    id: v4(),
+    pageName: "Archive",
+    path: "/archive",
+    class: "fa fa-archive",
+  },
+  {
+    id: v4(),
+    pageName: "Trash",
+    path: "/trash",
+    class: "fa fa-trash",
+  },
 ];
 
 export const Sidebar = (props) => {
