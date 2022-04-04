@@ -21,6 +21,12 @@ export const Notepad = (props) => {
               <i
                 className="fa fa-trash note-option-icon"
                 aria-hidden="true"
+                onClick={() =>
+                  noteListDisptach({
+                    type: "DELETE_NOTE_FROM_ARCHIVE",
+                    payload: { value: props.item.id },
+                  })
+                }
               ></i>
               <i
                 className="fa fa-pencil note-option-icon"

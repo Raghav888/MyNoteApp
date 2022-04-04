@@ -4,6 +4,10 @@ export const noteListReducer = (state, action) => {
   switch (action.type) {
     case "ADD_NOTE_DATA":
       return { ...state, noteList: action.payload.value };
+    case "ADD_ARCHIVE_DATA":
+      return { ...state, archiveData: action.payload.value };
+    case "ADD_TRASH_DATA":
+      return { ...state, trashData: action.payload.value };
     case "ADD_NOTE":
       (async () => {
         try {
@@ -61,8 +65,8 @@ export const noteListReducer = (state, action) => {
         noteList: state.noteList.filter(
           (item) => item.id !== action.payload.value
         ),
-        trashDatatemp: [
-          ...state.trashDatatemp,
+        trashData: [
+          ...state.trashData,
 
           ...state.noteList
             .map((item) =>
@@ -73,11 +77,7 @@ export const noteListReducer = (state, action) => {
             .filter((item) => item.id === action.payload.value),
         ],
       };
-    case "MOVE_TO_TRASH":
-      return {
-        ...state,
-        trashData: [...state.trashDatatemp, ...action.payload.value],
-      };
+
     case "ARCHIVE_NOTE":
       (async () => {
         try {
@@ -103,8 +103,8 @@ export const noteListReducer = (state, action) => {
         noteList: state.noteList.filter(
           (item) => item.id !== action.payload.value.id
         ),
-        archiveDatatemp: [
-          ...state.archiveDatatemp,
+        archiveData: [
+          ...state.archiveData,
 
           ...state.noteList
             .map((item) =>
@@ -115,12 +115,34 @@ export const noteListReducer = (state, action) => {
             .filter((item) => item.id === action.payload.value.id),
         ],
       };
-    case "MOVE_TO_ARCHIVE":
-      console.log(state.archiveDatatemp);
+    case "DELETE_NOTE_FROM_ARCHIVE":
+      (async () => {
+        try {
+          await axios.delete(
+            `https://my-json-server.typicode.com/Raghav888/mynoteappAPI/archive/${action.payload.value}`
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      })();
       return {
         ...state,
-        archiveData: [...state.archiveDatatemp, ...action.payload.value],
+        archiveData: state.archiveData.filter(
+          (item) => item.id !== action.payload.value
+        ),
+        trashData: [
+          ...state.trashData,
+
+          ...state.archiveData
+            .map((item) =>
+              item.id === action.payload.value
+                ? { ...item, istrashed: "true", isArchived: "false" }
+                : item
+            )
+            .filter((item) => item.id === action.payload.value),
+        ],
       };
+
     default:
       return state;
   }
