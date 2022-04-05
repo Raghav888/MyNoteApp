@@ -10,6 +10,8 @@ const InputDataProvider = ({ children }) => {
     tag: "WORK",
     priority: 1,
     cardcolor: "white-box",
+    id: null,
+    archive: false,
   });
 
   return (

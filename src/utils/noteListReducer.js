@@ -142,7 +142,53 @@ export const noteListReducer = (state, action) => {
             .filter((item) => item.id === action.payload.value),
         ],
       };
+    case "EDIT_NOTE":
+      (async () => {
+        try {
+          await axios.put(
+            `https://my-json-server.typicode.com/Raghav888/mynoteappAPI/notes/${action.payload.value.id}`,
+            { notes: { ...action.payload.value } },
+            {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+            }
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+      return {
+        ...state,
+        noteList: state.noteList.map((item) =>
+          item.id === action.payload.value.id ? action.payload.value : item
+        ),
+      };
 
+    case "EDIT_ARCHIVE":
+      (async () => {
+        try {
+          await axios.put(
+            `https://my-json-server.typicode.com/Raghav888/mynoteappAPI/archive/${action.payload.value.id}`,
+            { archive: { ...action.payload.value } },
+            {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+            }
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+      return {
+        ...state,
+        archiveData: state.archiveData.map((item) =>
+          item.id === action.payload.value.id ? action.payload.value : item
+        ),
+      };
     default:
       return state;
   }

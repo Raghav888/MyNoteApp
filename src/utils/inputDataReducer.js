@@ -10,6 +10,10 @@ export const inputDataReducer = (state, action) => {
       return { ...state, priority: Number(action.payload.value) };
     case "ADD_CARDCOLOR":
       return { ...state, cardcolor: action.payload.value };
+    case "ID":
+      return { ...state, id: action.payload.value };
+    case "ARCHIVE_DATA":
+      return { ...state, archive: action.payload.value };
     case "CLEAR":
       return {
         ...state,
@@ -18,6 +22,8 @@ export const inputDataReducer = (state, action) => {
         tag: "WORK",
         priority: 1,
         cardcolor: "white-box",
+        id: null,
+        archive: false,
       };
     default:
       return state;

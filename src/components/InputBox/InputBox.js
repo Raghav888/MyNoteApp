@@ -14,25 +14,42 @@ export const InputBox = (props) => {
     const mm = String(today.getMonth() + 1).padStart(2, "0");
     const yyyy = today.getFullYear();
     today = yyyy + "/" + mm + "/" + dd;
-
-    const newData = { ...inputdatastate, id: v4(), date: today };
-    noteListDisptach({
-      type: "ADD_NOTE",
-      payload: { value: newData },
-    });
+    if (inputdatastate.archive) {
+      const newData = { ...inputdatastate, date: today };
+      noteListDisptach({
+        type: "EDIT_ARCHIVE",
+        payload: { value: newData },
+      });
+    } else if (inputdatastate.id !== null) {
+      const newData = { ...inputdatastate, date: today };
+      noteListDisptach({
+        type: "EDIT_NOTE",
+        payload: { value: newData },
+      });
+    } else {
+      const newData = { ...inputdatastate, id: v4(), date: today };
+      noteListDisptach({
+        type: "ADD_NOTE",
+        payload: { value: newData },
+      });
+    }
     inputdatadispatch({
       type: "CLEAR",
     });
     props.closeinputbox(false);
   };
+
+  const closeBox = () => {
+    props.closeinputbox(false);
+    inputdatadispatch({
+      type: "CLEAR",
+    });
+  };
   return (
     <div className="inputbox-background">
       <div className={`inputbox-container ${inputdatastate.cardcolor}`}>
         <div className="titleCloseBtn">
-          <button
-            className="close-button"
-            onClick={() => props.closeinputbox(false)}
-          >
+          <button className="close-button" onClick={() => closeBox()}>
             <i className="fa fa-times" aria-hidden="true"></i>
           </button>
         </div>
@@ -42,6 +59,7 @@ export const InputBox = (props) => {
             type="text"
             placeholder="  Title"
             required
+            value={inputdatastate.title}
             onChange={(event) =>
               inputdatadispatch({
                 type: "ADD_TITLE",
@@ -57,6 +75,7 @@ export const InputBox = (props) => {
             cols="39"
             rows="5"
             required
+            value={inputdatastate.data}
             onChange={(event) =>
               inputdatadispatch({
                 type: "ADD_DATA",
@@ -77,11 +96,21 @@ export const InputBox = (props) => {
               })
             }
           >
-            <option value="WORK">WORK</option>
-            <option value="HEALTH">HEALTH</option>
-            <option value="HOME">HOME</option>
-            <option value="SCHOOL">SCHOOL</option>
-            <option value="BANK">BANK</option>
+            <option selected={inputdatastate.tag === "WORK"} value="WORK">
+              WORK
+            </option>
+            <option selected={inputdatastate.tag === "HEALTH"} value="HEALTH">
+              HEALTH
+            </option>
+            <option selected={inputdatastate.tag === "HOME"} value="HOME">
+              HOME
+            </option>
+            <option selected={inputdatastate.tag === "SCHOOL"} value="SCHOOL">
+              SCHOOL
+            </option>
+            <option selected={inputdatastate.tag === "BANK"} value="BANK">
+              BANK
+            </option>
           </select>
           <label htmlFor="priority-names">Priority:</label>
           <select
@@ -94,9 +123,15 @@ export const InputBox = (props) => {
               })
             }
           >
-            <option value="1">LOW</option>
-            <option value="2">MEDIUM</option>
-            <option value="3">HIGH</option>
+            <option selected={inputdatastate.priority === 1} value="1">
+              LOW
+            </option>
+            <option selected={inputdatastate.priority === 2} value="2">
+              MEDIUM
+            </option>
+            <option selected={inputdatastate.priority === 3} value="3">
+              HIGH
+            </option>
           </select>
 
           <label htmlFor="color-names">Color:</label>
@@ -110,15 +145,40 @@ export const InputBox = (props) => {
               })
             }
           >
-            <option value="white-box">WHITE</option>
-            <option value="red-box">RED</option>
-            <option value="blue-box">BLUE</option>
-            <option value="green-box">GREEN</option>
-            <option value="cream-box">Cream</option>
+            <option
+              selected={inputdatastate.cardcolor === "white-box"}
+              value="white-box"
+            >
+              WHITE
+            </option>
+            <option
+              selected={inputdatastate.cardcolor === "red-box"}
+              value="red-box"
+            >
+              RED
+            </option>
+            <option
+              selected={inputdatastate.cardcolor === "blue-box"}
+              value="blue-box"
+            >
+              BLUE
+            </option>
+            <option
+              selected={inputdatastate.cardcolor === "green-box"}
+              value="green-box"
+            >
+              GREEN
+            </option>
+            <option
+              selected={inputdatastate.cardcolor === "cream-box"}
+              value="cream-box"
+            >
+              Cream
+            </option>
           </select>
         </div>
         <div className="footer">
-          <button id="cancelBtn" onClick={() => props.closeinputbox(false)}>
+          <button id="cancelBtn" onClick={() => closeBox()}>
             Cancel
           </button>
           <button onClick={() => sendData()}>Submit</button>
