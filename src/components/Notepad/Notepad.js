@@ -1,8 +1,45 @@
 import "./notepad.css";
-import React from "react";
+import React, { useState } from "react";
 import { useNote } from "../../context/note-context";
+import { useInputData } from "../../context/inputdata-context";
+import { InputBox } from "../InputBox/InputBox";
 export const Notepad = (props) => {
   const { noteListDisptach } = useNote();
+  const { inputdatadispatch } = useInputData();
+  const [openinputbox, setinputbox] = useState(false);
+  const editNote = (val) => {
+    inputdatadispatch({
+      type: "ADD_TITLE",
+      payload: { value: props.item.title },
+    });
+    inputdatadispatch({
+      type: "ADD_DATA",
+      payload: { value: props.item.data },
+    });
+    inputdatadispatch({
+      type: "ADD_TAG",
+      payload: { value: props.item.tag },
+    });
+    inputdatadispatch({
+      type: "ADD_PRIORITY",
+      payload: { value: props.item.priority },
+    });
+    inputdatadispatch({
+      type: "ID",
+      payload: { value: props.item.id },
+    });
+    inputdatadispatch({
+      type: "ADD_CARDCOLOR",
+      payload: { value: props.item.cardcolor },
+    });
+    if (val) {
+      inputdatadispatch({
+        type: "ARCHIVE_DATA",
+        payload: { value: true },
+      });
+    }
+    setinputbox(true);
+  };
   return (
     <div className={`notelist ${props.item.cardcolor}`}>
       <h1 className="text-align-left text-bold">{props.item.title}</h1>
@@ -31,6 +68,7 @@ export const Notepad = (props) => {
               <i
                 className="fa fa-pencil note-option-icon"
                 aria-hidden="true"
+                onClick={() => editNote(true)}
               ></i>
             </div>
           ) : (
@@ -58,11 +96,13 @@ export const Notepad = (props) => {
               <i
                 className="fa fa-pencil note-option-icon"
                 aria-hidden="true"
+                onClick={() => editNote()}
               ></i>
             </div>
           )}
         </div>
       </div>
+      {openinputbox && <InputBox closeinputbox={setinputbox} />}
     </div>
   );
 };
